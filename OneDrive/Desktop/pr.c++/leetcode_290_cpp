@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+        unordered_map<string, int> string_inx;
+        unordered_map<char, int> char_inx;
+
+
+        // be used convert string to tokens so easily push to vector or map and used cPP stringsstream method and one more method isalso there and
+        // and used set so unique char to map string letter
+
+        stringstream ss(s);
+        string token;
+        int token_count = 0;
+        int n = pattern.size();
+        int i = 0;
+
+        while (ss >> token) {
+            token_count++;
+            if (i == n || string_inx[token] != char_inx[pattern[i]]) {
+                return false;
+            }
+            char_inx[pattern[i]] = i + 1;
+            string_inx[token] = i + 1;
+            i++;
+        }
+        if (i != n || token_count != n) {
+            return false;
+        }
+
+        return true;
+    }
+
+}
+
+;
